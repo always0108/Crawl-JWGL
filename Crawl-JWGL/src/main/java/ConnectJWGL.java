@@ -10,6 +10,7 @@ import java.util.Map;
 
 public class ConnectJWGL {
 
+    private final String url = "http://www.zfjw.xupt.edu.cn";
     private Map<String,String> cookies = new HashMap<>();
     private String modulus;
     private String exponent;
@@ -34,7 +35,7 @@ public class ConnectJWGL {
     // 获取csrftoken和Cookies
     private void getCsrftoken(){
         try{
-            connection = Jsoup.connect("http://www.zfjw.xupt.edu.cn/jwglxt/xtgl/login_slogin.html?language=zh_CN&_t="+new Date().getTime());
+            connection = Jsoup.connect(url+ "/jwglxt/xtgl/login_slogin.html?language=zh_CN&_t="+new Date().getTime());
             connection.header("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:29.0) Gecko/20100101 Firefox/29.0");
             response = connection.timeout(5000).execute();
             cookies = response.cookies();
@@ -48,7 +49,7 @@ public class ConnectJWGL {
 
     // 获取公钥并加密密码
     private void getRSApublickey() throws Exception{
-        connection = Jsoup.connect("http://www.zfjw.xupt.edu.cn/jwglxt/xtgl/login_getPublicKey.html?" +
+        connection = Jsoup.connect(url+ "/jwglxt/xtgl/login_getPublicKey.html?" +
                 "time="+ new Date().getTime());
         connection.header("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:29.0) Gecko/20100101 Firefox/29.0");
         response = connection.cookies(cookies).ignoreContentType(true).timeout(5000).execute();
@@ -62,7 +63,7 @@ public class ConnectJWGL {
     //登录
     public boolean beginLogin() throws Exception{
 
-        connection = Jsoup.connect("http://www.zfjw.xupt.edu.cn/jwglxt/xtgl/login_slogin.html");
+        connection = Jsoup.connect(url+ "/jwglxt/xtgl/login_slogin.html");
         connection.header("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
         connection.header("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:29.0) Gecko/20100101 Firefox/29.0");
 
