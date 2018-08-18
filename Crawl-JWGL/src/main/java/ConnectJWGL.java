@@ -17,12 +17,18 @@ public class ConnectJWGL {
     private Connection connection;
     private Connection.Response response;
     private Document document;
+    private String stuNum;
+    private String password;
 
-    public ConnectJWGL(){ }
+    public ConnectJWGL(String stuNum,String password){
+        this.stuNum = stuNum;
+        this.password = password;
+    }
 
     public void init() throws Exception{
         getCsrftoken();
         getRSApublickey();
+        beginLogin();
     }
 
     // 获取csrftoken和Cookies
@@ -49,14 +55,12 @@ public class ConnectJWGL {
         JSONObject jsonObject = JSON.parseObject(response.body());
         modulus = jsonObject.getString("modulus");
         exponent = jsonObject.getString("exponent");
-        // 根据如下参数去获取key
-        System.out.println("利用html去获取参数（Chrome打开）：");
-        System.out.println("Exponent: " + exponent);
-        System.out.println("Modulus : " + modulus);
+        password = RSAEncoder.RSAEncrypt(password, B64.b64tohex(modulus), B64.b64tohex(exponent));
+        password = B64.hex2b64(password);
     }
 
     //登录
-    public boolean beginLogin(String stuNum, String password) throws Exception{
+    public boolean beginLogin() throws Exception{
 
         connection = Jsoup.connect("http://www.zfjw.xupt.edu.cn/jwglxt/xtgl/login_slogin.html");
         connection.header("Content-Type","application/x-www-form-urlencoded;charset=utf-8");

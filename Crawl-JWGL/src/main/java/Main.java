@@ -6,11 +6,11 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.println("请输入学号:");
         String stuNum = input.next();
-        ConnectJWGL connectJWGL = new ConnectJWGL();
-        connectJWGL.init();
-        System.out.println("请输入加密后的密码:");
+        System.out.println("请输入密码:");
         String password = input.next();
-        connectJWGL.beginLogin(stuNum,password);
+        ConnectJWGL connectJWGL = new ConnectJWGL(stuNum,password);
+        connectJWGL.init();
+
     }
 
 }
