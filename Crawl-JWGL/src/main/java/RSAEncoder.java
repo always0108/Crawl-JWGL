@@ -33,7 +33,7 @@ public class RSAEncoder {
                 ba[--n] = new Byte(String.valueOf(c));
             }
             else if((c > 127) && (c < 2048)) {
-                ba[--n] = new Byte(String.valueOf((c & 63) | 128));
+                 ba[--n] = new Byte(String.valueOf((c & 63) | 128));
                 ba[--n] = new Byte(String.valueOf((c >> 6) | 192));
             } else {
                 ba[--n] = new Byte(String.valueOf((c & 63) | 128));

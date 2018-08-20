@@ -1,30 +1,29 @@
-import java.io.Console;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        // 当使用Eclipse等IDE运行以上代码时Console中将会为null
-//        Console console = System.console();
-//        if(console!=null)
-//        {
-//            String stuNum = console.readLine("请输入学号:");
-//            char[] password = console.readPassword("请输入密码:");
-//            ConnectJWGL connectJWGL = new ConnectJWGL(stuNum,password.toString());
-//            connectJWGL.init();
-//        }else{
-//            System.out.println("console == null");
-//        }
-
         Scanner input = new Scanner(System.in);
-//        System.out.println("请输入学号:");
-//        String stuNum = input.next();
-//        System.out.println("请输入密码:");
-//        String password = input.next();
-        String stuNum = "04163164";
-        String password = "ldxz19980108!@";
-                ConnectJWGL connectJWGL = new ConnectJWGL(stuNum,password);
+        System.out.print("请输入学号:");
+        String stuNum = input.next();
+        System.out.print("请输入密码:");
+        String password = input.next();
+        ConnectJWGL connectJWGL = new ConnectJWGL(stuNum,password);
         connectJWGL.init();
-        connectJWGL.getStudentTimetable();
+        if(connectJWGL.beginLogin()){
+            connectJWGL.getStudentInformaction();
+            System.out.println("---查询课表---");
+            System.out.print("输入学年（2018-2019就输2018）:");
+            int year = input.nextInt();
+            System.out.print("输入学期（1或2）:");
+            int term = input.nextInt();
+            connectJWGL.getStudentTimetable(year,term);
+            System.out.print("输入学年（2018-2019就输2018）:");
+            year = input.nextInt();
+            System.out.print("输入学期（1或2）:");
+            term = input.nextInt();
+            connectJWGL.getStudentGrade(year,term);
+        }
+        input.close();
     }
 }
