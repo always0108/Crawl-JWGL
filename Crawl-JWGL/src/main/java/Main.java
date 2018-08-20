@@ -24,6 +24,7 @@ public class Main {
             term = input.nextInt();
             connectJWGL.getStudentGrade(year,term);
         }
+        connectJWGL.logout();
         input.close();
     }
 }

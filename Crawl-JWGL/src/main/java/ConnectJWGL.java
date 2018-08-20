@@ -49,7 +49,7 @@ public class ConnectJWGL {
     }
 
     // 获取公钥并加密密码
-    private void getRSApublickey() throws Exception{
+    public void getRSApublickey() throws Exception{
         connection = Jsoup.connect(url+ "/jwglxt/xtgl/login_getPublicKey.html?" +
                 "time="+ new Date().getTime());
         connection.header("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:29.0) Gecko/20100101 Firefox/29.0");
@@ -132,7 +132,7 @@ public class ConnectJWGL {
     }
 
     // 获取成绩信息
-    public void getStudentGrade(int year , int term)  throws Exception {
+    public void getStudentGrade(int year , int term) throws Exception {
         Map<String,String> datas = new HashMap<>();
         datas.put("xnm",String.valueOf(year));
         datas.put("xqm",String.valueOf(term * term * 3));
@@ -162,6 +162,12 @@ public class ConnectJWGL {
                     lesson.getString("bfzcj") + " " +
                     lesson.getString("jd"));
         }
+    }
+
+    public void logout() throws Exception {
+        connection = Jsoup.connect(url+ "/jwglxt/xsxxxggl/xsxxwh_cxCkDgxsxx.html?gnmkdm=N100801&su="+ stuNum);
+        connection.header("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:29.0) Gecko/20100101 Firefox/29.0");
+        response = connection.cookies(cookies).ignoreContentType(true).execute();
     }
 
 }
