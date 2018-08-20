@@ -49,8 +49,7 @@ public class B64 {
 
     // 16进制转Base64
     public static String hex2b64(String h) {
-        int i;
-        int c;
+        int i , c;
         StringBuilder ret = new StringBuilder();
         for(i = 0; i+3 <= h.length(); i+=3) {
             c = parseInt(h.substring(i,i+3),16);

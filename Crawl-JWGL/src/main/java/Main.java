@@ -17,12 +17,14 @@ public class Main {
 //        }
 
         Scanner input = new Scanner(System.in);
-        System.out.println("请输入学号:");
-        String stuNum = input.next();
-        System.out.println("请输入密码:");
-        String password = input.next();
-        ConnectJWGL connectJWGL = new ConnectJWGL(stuNum,password);
+//        System.out.println("请输入学号:");
+//        String stuNum = input.next();
+//        System.out.println("请输入密码:");
+//        String password = input.next();
+        String stuNum = "04163164";
+        String password = "ldxz19980108!@";
+                ConnectJWGL connectJWGL = new ConnectJWGL(stuNum,password);
         connectJWGL.init();
+        connectJWGL.getStudentTimetable();
     }
-
 }
