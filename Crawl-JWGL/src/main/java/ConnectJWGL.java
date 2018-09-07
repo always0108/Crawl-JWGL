@@ -165,7 +165,7 @@ public class ConnectJWGL {
     }
 
     public void logout() throws Exception {
-        connection = Jsoup.connect(url+ "/jwglxt/xsxxxggl/xsxxwh_cxCkDgxsxx.html?gnmkdm=N100801&su="+ stuNum);
+        connection = Jsoup.connect(url+ "/jwglxt/logout");
         connection.header("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:29.0) Gecko/20100101 Firefox/29.0");
         response = connection.cookies(cookies).ignoreContentType(true).execute();
     }
